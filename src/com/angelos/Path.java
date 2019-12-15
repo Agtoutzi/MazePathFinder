@@ -1,19 +1,28 @@
 package com.angelos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Path {
     private List<Point> pointList;
 
-    public Path(List<Point> pointList) {
-        if (pointList == null || pointList.size() < 2) {
-            throw new IllegalArgumentException("Point-list parameter is invalid");
+    public Path() {
+        this.pointList = new ArrayList<>();
+    }
+
+    public void addPoint(Point point) {
+        if (point == null) {
+            throw new IllegalArgumentException("Point added cannot be null");
         }
-        this.pointList = pointList;
+        pointList.add(point);
     }
 
     @Override
     public String toString() {
+        if (pointList.size() < 2) {
+            throw new IllegalArgumentException("Point-list too small");
+        }
+
         StringBuilder sb = new StringBuilder();
         Point point = pointList.get(0);
         sb.append("(")
