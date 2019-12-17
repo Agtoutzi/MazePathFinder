@@ -3,6 +3,13 @@ package com.angelos;
 public class Main {
 
     public static void main(String[] args) {
-        InputRead.readMazeFromFile("resources/maze1.txt");
+        try {
+            Maze maze = InputRead.readMazeFromFile("resources/maze2.txt");
+            PathFinder pathFinder = new PathFinder(maze);
+            Path path = pathFinder.findPath();
+            System.out.println(path.toString());
+        } catch (Exception e) {
+            System.out.println("Invalid Maze input: " + e.getMessage());
+        }
     }
 }
