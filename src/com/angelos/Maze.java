@@ -6,8 +6,8 @@ package com.angelos;
 public class Maze {
     private EPointState[][] matrix;
 
-    private int[] startPoint;
-    private int[] goalPoint;
+    private Point startPoint;
+    private Point goalPoint;
 
     public Maze(EPointState[][] matrix) throws Exception {
         this.matrix = matrix;
@@ -15,14 +15,13 @@ public class Maze {
         goalPoint = getPoint(EPointState.GOAL);
     }
 
-    private int[] getPoint(EPointState pointState) throws Exception {
-        int[] point = new int[2];
+    private Point getPoint(EPointState pointState) throws Exception {
+        Point point = null;
         boolean found = false;
         for (int i = 0; i < matrix.length && !found; i++) {
             for (int j = 0; j < matrix[i].length && !found; j++) {
                 if (getPointState(i, j) == pointState) {
-                    point[0] = i;
-                    point[1] = j;
+                    point = new Point(i,j);
                     found = true;
                 }
             }
@@ -33,11 +32,11 @@ public class Maze {
         return point;
     }
 
-    public int[] getStartPoint() {
+    public Point getStartPoint() {
         return startPoint;
     }
 
-    public int[] getGoalPoint() {
+    public Point getGoalPoint() {
         return goalPoint;
     }
 
@@ -47,5 +46,13 @@ public class Maze {
 //        }
 
         return matrix[pointX][pointY];
+    }
+
+    public int getRowLength() {
+        return matrix.length;
+    }
+
+    public int getColumnLength() {
+        return matrix[0].length;
     }
 }
