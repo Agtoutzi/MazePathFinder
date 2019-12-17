@@ -26,25 +26,25 @@ public class Path {
         StringBuilder sb = new StringBuilder();
         Point point = pointList.get(0);
         sb.append("(")
-                .append(point.getX())
+                .append(point.getX() + 1)
                 .append(":")
-                .append(point.getY())
+                .append(point.getY() + 1)
                 .append(" (")
                 .append(EPointState.START.getSymbol())
                 .append("))");
         for (int i = 1; i < pointList.size() - 1; i++) {
             point = pointList.get(i);
             sb.append(", (")
-                    .append(point.getX())
+                    .append(point.getX() + 1)
                     .append(":")
-                    .append(point.getY())
+                    .append(point.getY() + 1)
                     .append(")");
         }
         point = pointList.get(pointList.size() - 1);
         sb.append(", (")
-                .append(point.getX())
+                .append(point.getX() + 1)
                 .append(":")
-                .append(point.getY())
+                .append(point.getY() + 1)
                 .append(" (")
                 .append(EPointState.GOAL.getSymbol())
                 .append("))");
