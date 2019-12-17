@@ -11,17 +11,23 @@ public class Maze {
 
     public Maze(EPointState[][] matrix) throws Exception {
         this.matrix = matrix;
-        startPoint = getPoint(EPointState.START);
-        goalPoint = getPoint(EPointState.GOAL);
+        startPoint = getStartGoalPoint(EPointState.START);
+        goalPoint = getStartGoalPoint(EPointState.GOAL);
     }
 
-    private Point getPoint(EPointState pointState) throws Exception {
+    private Point getStartGoalPoint(EPointState pointState) throws Exception {
+        if (pointState == EPointState.WALL || pointState == EPointState.PATH) {
+            throw new IllegalArgumentException("EPointState." + pointState + " input is not allowed here.");
+        }
         Point point = null;
         boolean found = false;
-        for (int i = 0; i < matrix.length && !found; i++) {
-            for (int j = 0; j < matrix[i].length && !found; j++) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
                 if (getPointState(i, j) == pointState) {
-                    point = new Point(i,j);
+                    if (found) {
+                        throw new Exception("More than 1 " + pointState.toString() + " points found in Maze.");
+                    }
+                    point = new Point(i, j);
                     found = true;
                 }
             }
