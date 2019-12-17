@@ -8,15 +8,17 @@ import java.util.List;
 
 public class InputRead {
 
-    public static Maze readMazeFromFile(String inputFilePath) {
+    public static Maze readMazeFromFile(String inputFilePath) throws Exception {
         int columns;
         List<EPointState[]> statesList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
             String line = reader.readLine();
             columns = line.length();
             while (line != null) {
+                if (line.length() != columns) {
+                    throw new Exception("Rows do not have the same length");
+                }
                 EPointState[] pointStates = new EPointState[columns];
-                System.out.println(line);
                 for (int i = 0; i < columns; i++) {
                     pointStates[i] = EPointState.getPointState(line.charAt(i));
                 }
@@ -31,12 +33,6 @@ public class InputRead {
 
         EPointState[][] states = new EPointState[statesList.size()][];
         states = statesList.toArray(states);
-        Maze maze = null;
-        try {
-            maze = new Maze(states);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return maze;
+        return new Maze(states);
     }
 }
