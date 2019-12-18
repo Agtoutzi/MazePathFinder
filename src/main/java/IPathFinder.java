@@ -1,3 +1,3 @@
 public interface IPathFinder {
-    Path findPath() throws Exception;
+    Path findPath() throws InvalidInputException;
 }

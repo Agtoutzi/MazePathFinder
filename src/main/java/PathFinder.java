@@ -6,10 +6,10 @@ public class PathFinder implements IPathFinder {
     }
 
     @Override
-    public Path findPath() throws Exception {
+    public Path findPath() throws InvalidInputException {
         int[][] distanceMatrix = buildDistanceMatrix();
         if (distanceMatrix[maze.getStartPoint().getX()][maze.getStartPoint().getY()] == -1) {
-            throw new Exception("Goal Point not reachable from Start Point");
+            throw new InvalidInputException("Goal Point not reachable from Start Point");
         }
         return calculatePath(distanceMatrix);
     }

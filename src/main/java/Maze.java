@@ -7,13 +7,13 @@ public class Maze {
     private Point startPoint;
     private Point goalPoint;
 
-    public Maze(EPointState[][] matrix) throws Exception {
+    public Maze(EPointState[][] matrix) throws InvalidInputException {
         this.matrix = matrix;
         startPoint = getStartGoalPoint(EPointState.START);
         goalPoint = getStartGoalPoint(EPointState.GOAL);
     }
 
-    private Point getStartGoalPoint(EPointState pointState) throws Exception {
+    private Point getStartGoalPoint(EPointState pointState) throws InvalidInputException {
         if (pointState == EPointState.WALL || pointState == EPointState.PATH) {
             throw new IllegalArgumentException("EPointState." + pointState + " input is not allowed here.");
         }
@@ -23,7 +23,7 @@ public class Maze {
             for (int j = 0; j < matrix[i].length; j++) {
                 if (getPointState(i, j) == pointState) {
                     if (found) {
-                        throw new Exception("More than 1 " + pointState.toString() + " points found in Maze.");
+                        throw new InvalidInputException("More than 1 " + pointState.toString() + " points found in Maze.");
                     }
                     point = new Point(i, j);
                     found = true;
@@ -31,7 +31,7 @@ public class Maze {
             }
         }
         if (!found) {
-            throw new Exception(pointState.toString() + " point not found in Maze.");
+            throw new InvalidInputException(pointState.toString() + " point not found in Maze.");
         }
         return point;
     }
@@ -45,10 +45,6 @@ public class Maze {
     }
 
     public EPointState getPointState(int pointX, int pointY) {
-//        if (pointX >= matrix.length) {
-//            throw new IndexOutOfBoundsException("");
-//        }
-
         return matrix[pointX][pointY];
     }
 

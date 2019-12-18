@@ -6,7 +6,7 @@ import java.util.List;
 
 public class InputRead {
 
-    public static Maze readMazeFromFile(String inputFilePath) throws Exception {
+    public static Maze readMazeFromFile(String inputFilePath) throws InvalidInputException, IOException {
         int columns;
         List<EPointState[]> statesList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
@@ -14,7 +14,7 @@ public class InputRead {
             columns = line.length();
             while (line != null) {
                 if (line.length() != columns) {
-                    throw new Exception("Rows do not have the same length");
+                    throw new InvalidInputException("Rows do not have the same length");
                 }
                 EPointState[] pointStates = new EPointState[columns];
                 for (int i = 0; i < columns; i++) {
@@ -25,8 +25,6 @@ public class InputRead {
                 // read next line
                 line = reader.readLine();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         EPointState[][] states = new EPointState[statesList.size()][];

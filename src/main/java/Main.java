@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -6,8 +8,10 @@ public class Main {
             IPathFinder pathFinder = new PathFinder(maze);
             Path path = pathFinder.findPath();
             System.out.println(path.toString());
-        } catch (Exception e) {
+        } catch (InvalidInputException e) {
             System.out.println("Invalid Maze input: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Maze could not be read from file: " + e);
         }
     }
 }
