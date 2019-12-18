@@ -34,13 +34,6 @@ public class PathFinder implements IPathFinder {
                     }
                 }
             }
-            for (int i = 0; i < distanceMatrix.length; i++) {
-                for (int j = 0; j < distanceMatrix[0].length; j++) {
-                    System.out.print(distanceMatrix[i][j] + "\t");
-                }
-                System.out.println();
-            }
-            System.out.println();
         }
         return distanceMatrix;
     }
