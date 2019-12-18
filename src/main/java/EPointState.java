@@ -1,5 +1,3 @@
-package com.angelos;
-
 /**
  * Enum describing the state of a point in the matrix.
  */

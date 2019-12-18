@@ -1,5 +1,3 @@
-package com.angelos;
-
 /**
  * Definition of a point's coordinates in a 2D Matrix.
  */

@@ -1,5 +1,3 @@
-package com.angelos;
-
 /**
  * Class representing a Maze definition.
  */

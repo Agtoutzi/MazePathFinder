@@ -1,5 +1,3 @@
-package com.angelos;
-
 public class PathFinder implements IPathFinder {
     private Maze maze;
 
