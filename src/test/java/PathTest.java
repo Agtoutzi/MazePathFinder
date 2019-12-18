@@ -1,5 +1,3 @@
-package com.angelos;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -19,16 +17,16 @@ public class PathTest {
 
     @org.junit.Test
     public void testToString() {
-        path.addPoint(new Point(1, 1));
-        path.addPoint(new Point(2, 1));
-        path.addPoint(new Point(3, 1));
+        path.addPoint(new Point(0, 0));
+        path.addPoint(new Point(1, 0));
+        path.addPoint(new Point(2, 0));
+        path.addPoint(new Point(3, 0));
+        path.addPoint(new Point(4, 0));
         path.addPoint(new Point(4, 1));
-        path.addPoint(new Point(5, 1));
-        path.addPoint(new Point(5, 2));
-        path.addPoint(new Point(5, 3));
-        path.addPoint(new Point(4, 3));
-        path.addPoint(new Point(4, 4));
-        path.addPoint(new Point(4, 5));
+        path.addPoint(new Point(4, 2));
+        path.addPoint(new Point(3, 2));
+        path.addPoint(new Point(3, 3));
+        path.addPoint(new Point(3, 4));
         assertEquals("(1:1 (S)), (2:1), (3:1), (4:1), (5:1), (5:2), (5:3), (4:3), (4:4), (4:5 (G))",
                 path.toString());
     }
