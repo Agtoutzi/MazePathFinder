@@ -33,12 +33,12 @@ public class InputRead {
             // Read first line of file and validate the size of it
             String line = reader.readLine();
             int firstLineLength = line.length();
-            validateFileSize(firstLineLength);
+            InputValidation.validateFileSize(firstLineLength);
 
             int lineIndex = 0;
             while (line != null) {
                 // Validate the last read line
-                validateLineLength(line, firstLineLength);
+                InputValidation.validateLineLength(line, firstLineLength);
 
                 // Add a new array of point-states from the last read line
                 statesList.add(createPointStateRow(lineIndex, line, maze));
@@ -49,47 +49,14 @@ public class InputRead {
             }
 
             // Validate number of lines read
-            validateFileSize(lineIndex - 1);
+            InputValidation.validateFileSize(lineIndex - 1);
         }
         // Validate maze
-        validateMaze(maze);
+        InputValidation.validateMaze(maze);
 
         // Set the matrix of the maze
         maze.setMatrix(convertListTo2DArray(statesList));
         return maze;
-    }
-
-    private static void validateMaze(Maze maze) throws InvalidInputException {
-        if (maze.getStartPoint() == null) {
-            throw new InvalidInputException("Maze does not contain a Start point");
-        }
-        if (maze.getGoalPoint() == null) {
-            throw new InvalidInputException("Maze does not contain a Goal point");
-        }
-    }
-
-    private static void validateFileSize(int length) throws InvalidInputException {
-        if (length < 0) {
-            throw new InvalidInputException("File size is more than lower-limit");
-        } else if (length < 2) {
-            throw new InvalidInputException("File size is less than lower-limit");
-        }
-    }
-
-    private static void validateLineLength(String line, int firstLineLength) throws InvalidInputException {
-        if (line.length() != firstLineLength) {
-            throw new InvalidInputException("Rows do not have the same length");
-        }
-    }
-
-    private static void validateChar(char mazeCharacter, Maze maze) throws InvalidInputException {
-        EPointState pointState = EPointState.getPointState(mazeCharacter);
-        if (pointState == null) {
-            throw new InvalidInputException("Character '" + mazeCharacter + "' is not supported");
-        } else if (pointState == EPointState.START && maze.getStartPoint() != null ||
-                pointState == EPointState.GOAL && maze.getGoalPoint() != null) {
-            throw new InvalidInputException("More than 1 " + pointState.toString() + " points found in Maze.");
-        }
     }
 
     private static EPointState[] createPointStateRow(int rowIndex, String line, Maze maze) throws InvalidInputException {
@@ -98,7 +65,7 @@ public class InputRead {
             char nextChar = line.charAt(i);
 
             // Validate the last read char
-            validateChar(nextChar, maze);
+            InputValidation.validateChar(nextChar, maze);
 
             EPointState pointState = EPointState.getPointState(nextChar);
             // Store point-state in the array
