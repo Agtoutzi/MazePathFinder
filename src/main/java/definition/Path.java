@@ -10,7 +10,7 @@ public class Path {
     private List<Point> pointList;
 
     /**
-     * Constructor. Path is iniitally empty.
+     * Constructor. Path is initially empty.
      */
     public Path() {
         this.pointList = new ArrayList<>();

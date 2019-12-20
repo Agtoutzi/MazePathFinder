@@ -14,12 +14,8 @@ public class PathFinderTest {
     @Test
     public void findPath() throws InvalidInputException {
         Maze maze = buildValidMaze();
-        Path path = new Path();
-        try {
-            PathFinder pf = new PathFinder(maze);
-            path = pf.findPath();
-        } catch (InvalidInputException e) {
-        }
+        PathFinder pf = new PathFinder(maze);
+        Path path = pf.findPath();
         assertEquals("(3:1 (S)), (4:1), (5:1), (6:1), (6:2), (6:3), (6:4), (6:5), (6:6 (G))", path.toString());
     }
 
