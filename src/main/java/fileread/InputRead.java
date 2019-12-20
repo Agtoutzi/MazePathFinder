@@ -31,6 +31,9 @@ public class InputRead {
      * @throws IOException           when a problem occurs when reading the file
      */
     public static Maze readMazeFromFile(String inputFilePath) throws InvalidInputException, IOException {
+        if (inputFilePath == null) {
+            throw new InvalidInputException("Input-File path is null");
+        }
         List<EPointState[]> statesList = new ArrayList<>();
         Maze maze = new Maze();
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFilePath))) {
