@@ -12,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class PathFinderTest {
 
     @Test
-    public void findPath() {
+    public void findPath() throws InvalidInputException {
         Maze maze = buildValidMaze();
         Path path = new Path();
         try {
@@ -23,7 +23,7 @@ public class PathFinderTest {
         assertEquals("(3:1 (S)), (4:1), (5:1), (6:1), (6:2), (6:3), (6:4), (6:5), (6:6 (G))", path.toString());
     }
 
-    private Maze buildValidMaze() {
+    private Maze buildValidMaze() throws InvalidInputException {
         Maze maze = new Maze();
         maze.setGoalPoint(new Point(5, 5));
         maze.setStartPoint(new Point(2, 0));
@@ -58,7 +58,7 @@ public class PathFinderTest {
         pf.findPath();
     }
 
-    private Maze buildInValidMaze() {
+    private Maze buildInValidMaze() throws InvalidInputException {
         Maze maze = new Maze();
         maze.setGoalPoint(new Point(5, 5));
         maze.setStartPoint(new Point(2, 0));
