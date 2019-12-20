@@ -133,24 +133,19 @@ public class PathFinder implements IPathFinder {
             int west = getPositionNumber(distanceMatrix, i, j - 1);
 
             int minDest = getMinPositiveOfFour(north, south, east, west);
-            int minDestRowIndex;
-            int minDestColumnIndex;
+            Point nextPoint;
             if (minDest == north) {
-                minDestRowIndex = i - 1;
-                minDestColumnIndex = j;
+                nextPoint = new Point(i - 1, j);
             } else if (minDest == south) {
-                minDestRowIndex = i + 1;
-                minDestColumnIndex = j;
+                nextPoint = new Point(i + 1, j);
             } else if (minDest == east) {
-                minDestRowIndex = i;
-                minDestColumnIndex = j + 1;
+                nextPoint = new Point(i, j + 1);
             } else {
-                minDestRowIndex = i;
-                minDestColumnIndex = j - 1;
+                nextPoint = new Point(i, j - 1);
             }
-            shortestPath.addPoint(new Point(minDestRowIndex, minDestColumnIndex));
-            i = minDestRowIndex;
-            j = minDestColumnIndex;
+            shortestPath.addPoint(nextPoint);
+            i = nextPoint.getX();
+            j = nextPoint.getY();
         }
         return shortestPath;
     }
