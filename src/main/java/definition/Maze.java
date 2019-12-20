@@ -1,5 +1,7 @@
 package definition;
 
+import exception.InvalidInputException;
+
 /**
  * Class representing a Maze definition.
  */
@@ -41,13 +43,13 @@ public class Maze {
         return matrix[0].length;
     }
 
-    public void setMatrix(EPointState[][] matrix) {
+    public void setMatrix(EPointState[][] matrix) throws InvalidInputException {
         this.matrix = matrix;
 
         if (startPoint == null) {
-            throw new NullPointerException("Maze Start-Point is not defined");
+            throw new InvalidInputException("Maze Start-Point is not defined");
         } else if (goalPoint == null) {
-            throw new NullPointerException("Maze Goal-Point is not defined");
+            throw new InvalidInputException("Maze Goal-Point is not defined");
         }
 
         if (matrix[startPoint.getX()][startPoint.getY()] != EPointState.START) {
