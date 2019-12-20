@@ -58,8 +58,6 @@ public class Maze {
      *                               the given matrix's START and GOAL points
      */
     public void setMatrix(EPointState[][] matrix) throws InvalidInputException {
-        this.matrix = matrix;
-
         if (startPoint == null) {
             throw new InvalidInputException("Maze Start-Point is not defined");
         } else if (goalPoint == null) {
@@ -71,5 +69,6 @@ public class Maze {
         } else if (matrix[goalPoint.getX()][goalPoint.getY()] != EPointState.GOAL) {
             throw new IllegalArgumentException("Matrix Goal-Point and Maze Goal-Point do not match");
         }
+        this.matrix = matrix;
     }
 }
