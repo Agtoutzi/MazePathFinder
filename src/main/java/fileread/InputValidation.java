@@ -11,7 +11,7 @@ public class InputValidation {
     private InputValidation() {
     }
 
-    static void validateMaze(Maze maze) throws InvalidInputException {
+    public static void validateMaze(Maze maze) throws InvalidInputException {
         if (maze.getStartPoint() == null) {
             throw new InvalidInputException("Maze does not contain a Start point");
         }
@@ -20,6 +20,13 @@ public class InputValidation {
         }
         if (maze.getGoalPoint().equals(maze.getStartPoint())) {
             throw new InvalidInputException("Maze Start and Goal point are identical");
+        }
+        try {
+            validateFileSize(maze.getRowLength());
+            validateFileSize(maze.getColumnLength());
+        }
+        catch (NullPointerException e){
+            throw new InvalidInputException("Maze is invalid");
         }
     }
 

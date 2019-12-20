@@ -51,11 +51,11 @@ public class InputRead {
             // Validate number of lines read
             InputValidation.validateFileSize(lineIndex - 1);
         }
-        // Validate maze
-        InputValidation.validateMaze(maze);
-
         // Set the matrix of the maze
         maze.setMatrix(convertListTo2DArray(statesList));
+
+        // Validate maze
+        InputValidation.validateMaze(maze);
         return maze;
     }
 
