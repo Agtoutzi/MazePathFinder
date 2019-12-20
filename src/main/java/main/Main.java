@@ -13,6 +13,9 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            if (args.length == 0) {
+                throw new InvalidInputException("File not provided");
+            }
             Maze maze = InputRead.readMazeFromFile(args[0]);
             IPathFinder pathFinder = new PathFinder(maze);
             Path path = pathFinder.findPath();
