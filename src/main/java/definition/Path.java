@@ -3,13 +3,24 @@ package definition;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Defines a path as a list of {@link Point} objects.
+ */
 public class Path {
     private List<Point> pointList;
 
+    /**
+     * Constructor. Path is iniitally empty.
+     */
     public Path() {
         this.pointList = new ArrayList<>();
     }
 
+    /**
+     * Adds a {@link Point} at the end of the path.
+     *
+     * @param point the point to be added
+     */
     public void addPoint(Point point) {
         if (point == null) {
             throw new IllegalArgumentException("Point added cannot be null");
@@ -17,6 +28,12 @@ public class Path {
         pointList.add(point);
     }
 
+    /**
+     * Generates a representation of the path, as a sequence of coordinates. First point in the path is set as START
+     * and has an S symbol and last point in the path is set as GOAL and has a G symbol.
+     *
+     * @return the representation of the path
+     */
     @Override
     public String toString() {
         if (pointList.size() < 2) {

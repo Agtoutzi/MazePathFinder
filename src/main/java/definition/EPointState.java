@@ -19,6 +19,12 @@ public enum EPointState {
         return symbol;
     }
 
+    /**
+     * Finds and returns the {@link EPointState} instance that matches a given character symbol
+     *
+     * @param symbol the character symbol to be matched
+     * @return the {@link EPointState} that matches the given character symbol or null if not found
+     */
     public static EPointState getPointState(char symbol) {
         for (EPointState EPointState : EPointState.values()) {
             if (EPointState.getSymbol() == symbol) {

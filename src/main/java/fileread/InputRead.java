@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Contains methods for reading an {@link Maze} input from a text file.
+ */
 public class InputRead {
     private InputRead() {
     }

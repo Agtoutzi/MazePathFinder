@@ -31,6 +31,13 @@ public class Maze {
         this.goalPoint = goalPoint;
     }
 
+    /**
+     * Finds a point in the point-state matrix and returns its {@link EPointState}.
+     *
+     * @param pointX the row-index of the point
+     * @param pointY the column-index of the point
+     * @return the {@link EPointState} value of the point with the given coordinates as found in matrix
+     */
     public EPointState getPointState(int pointX, int pointY) {
         return matrix[pointX][pointY];
     }
@@ -43,6 +50,13 @@ public class Maze {
         return matrix[0].length;
     }
 
+    /**
+     * Sets the matrix of a {@link Maze} object.
+     *
+     * @param matrix the matrix to be set
+     * @throws InvalidInputException if START and GOAL points of the maze are not defined, or if they do not match with
+     *                               the given matrix's START and GOAL points
+     */
     public void setMatrix(EPointState[][] matrix) throws InvalidInputException {
         this.matrix = matrix;
 

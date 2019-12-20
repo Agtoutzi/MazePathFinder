@@ -3,6 +3,9 @@ package algorithm;
 import definition.Path;
 import exception.InvalidInputException;
 
+/**
+ * Interface for path-finding.
+ */
 public interface IPathFinder {
     /**
      * Finds/Calculates a {@link Path}.
