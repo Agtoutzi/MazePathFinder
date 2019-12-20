@@ -25,23 +25,36 @@ public class PathFinder implements IPathFinder {
     private int[][] buildDistanceMatrix() {
         int[][] distanceMatrix = initDistanceMatrix();
 
-        boolean changed = true;
-        while (changed) {
+        boolean changed;
+        do {
             changed = false;
             for (int i = 0; i < distanceMatrix.length; i++) {
                 for (int j = 0; j < distanceMatrix[0].length; j++) {
-                    if (maze.getPointState(i, j) == EPointState.WALL) {
-                        continue;
-                    }
-                    int minPath = getMinPathLength(distanceMatrix, i, j);
-                    if (minPath >= 0 && (distanceMatrix[i][j] < 0 || minPath + 1 < distanceMatrix[i][j])) {
+                    int newDistance = calculatePointDistance(distanceMatrix, i, j);
+                    if (distanceMatrix[i][j] != newDistance) {
                         changed = true;
-                        distanceMatrix[i][j] = minPath + 1;
+                        distanceMatrix[i][j] = newDistance;
                     }
                 }
             }
-        }
+        } while (changed);
         return distanceMatrix;
+    }
+
+    private int calculatePointDistance(int[][] distanceMatrix, int rowIndex, int columnIndex) {
+        // If the point contains a wall return the same distance
+        if (maze.getPointState(rowIndex, columnIndex) == EPointState.WALL) {
+            return distanceMatrix[rowIndex][columnIndex];
+        }
+        // Get the new minimum path distance for the point
+        int minPath = getMinPathLength(distanceMatrix, rowIndex, columnIndex);
+
+        // Check if new minimum path is valid and lesser than the existing distance value of the point
+        if (minPath >= 0 &&
+                (distanceMatrix[rowIndex][columnIndex] < 0 || minPath + 1 < distanceMatrix[rowIndex][columnIndex])) {
+            return minPath + 1;
+        }
+        return distanceMatrix[rowIndex][columnIndex];
     }
 
     private int getMinPathLength(int[][] distanceMatrix, int i, int j) {
