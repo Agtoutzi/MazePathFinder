@@ -1,3 +1,5 @@
+package definition;
+
 /**
  * Enum describing the state of a point in the matrix.
  */

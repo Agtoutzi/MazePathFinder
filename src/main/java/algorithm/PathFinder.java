@@ -1,3 +1,11 @@
+package algorithm;
+
+import definition.EPointState;
+import definition.Maze;
+import definition.Path;
+import definition.Point;
+import exception.InvalidInputException;
+
 public class PathFinder implements IPathFinder {
     private Maze maze;
 

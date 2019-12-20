@@ -1,3 +1,10 @@
+package fileread;
+
+import definition.EPointState;
+import definition.Maze;
+import definition.Point;
+import exception.InvalidInputException;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

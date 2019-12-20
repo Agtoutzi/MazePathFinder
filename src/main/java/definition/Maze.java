@@ -1,3 +1,5 @@
+package definition;
+
 /**
  * Class representing a Maze definition.
  */
