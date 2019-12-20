@@ -7,33 +7,8 @@ public class Maze {
     private Point startPoint;
     private Point goalPoint;
 
-    public Maze(EPointState[][] matrix) throws InvalidInputException {
-        this.matrix = matrix;
-        startPoint = getStartGoalPoint(EPointState.START);
-        goalPoint = getStartGoalPoint(EPointState.GOAL);
-    }
+    public Maze() {
 
-    private Point getStartGoalPoint(EPointState pointState) throws InvalidInputException {
-        if (pointState == EPointState.WALL || pointState == EPointState.PATH) {
-            throw new IllegalArgumentException("EPointState." + pointState + " input is not allowed here.");
-        }
-        Point point = null;
-        boolean found = false;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (getPointState(i, j) == pointState) {
-                    if (found) {
-                        throw new InvalidInputException("More than 1 " + pointState.toString() + " points found in Maze.");
-                    }
-                    point = new Point(i, j);
-                    found = true;
-                }
-            }
-        }
-        if (!found) {
-            throw new InvalidInputException(pointState.toString() + " point not found in Maze.");
-        }
-        return point;
     }
 
     public Point getStartPoint() {
@@ -42,6 +17,14 @@ public class Maze {
 
     public Point getGoalPoint() {
         return goalPoint;
+    }
+
+    public void setStartPoint(Point startPoint) {
+        this.startPoint = startPoint;
+    }
+
+    public void setGoalPoint(Point goalPoint) {
+        this.goalPoint = goalPoint;
     }
 
     public EPointState getPointState(int pointX, int pointY) {
@@ -54,5 +37,21 @@ public class Maze {
 
     public int getColumnLength() {
         return matrix[0].length;
+    }
+
+    public void setMatrix(EPointState[][] matrix) {
+        this.matrix = matrix;
+
+        if (startPoint == null) {
+            throw new NullPointerException("Maze Start-Point is not defined");
+        } else if (goalPoint == null) {
+            throw new NullPointerException("Maze Goal-Point is not defined");
+        }
+
+        if (matrix[startPoint.getX()][startPoint.getY()] != EPointState.START) {
+            throw new IllegalArgumentException("Matrix Start-Point and Maze Start-Point do not match");
+        } else if (matrix[goalPoint.getX()][goalPoint.getY()] != EPointState.GOAL) {
+            throw new IllegalArgumentException("Matrix Goal-Point and Maze Goal-Point do not match");
+        }
     }
 }
