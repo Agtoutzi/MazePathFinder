@@ -22,4 +22,12 @@ public class Point {
     public int getY() {
         return y;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Point)) {
+            return false;
+        }
+        return ((Point) obj).getX() == x && ((Point) obj).getY() == y;
+    }
 }
