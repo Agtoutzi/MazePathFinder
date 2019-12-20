@@ -11,7 +11,13 @@ public class PathTest {
     }
 
     @org.junit.Test(expected = IllegalArgumentException.class)
-    public void testToString_InvalidData() {
+    public void testToString_EmptyPath() {
+        path.toString();
+    }
+
+    @org.junit.Test(expected = IllegalArgumentException.class)
+    public void testToString_Invalid() {
+        path.addPoint(new Point(1, 1));
         path.toString();
     }
 
@@ -29,12 +35,6 @@ public class PathTest {
         path.addPoint(new Point(3, 4));
         assertEquals("(1:1 (S)), (2:1), (3:1), (4:1), (5:1), (5:2), (5:3), (4:3), (4:4), (4:5 (G))",
                 path.toString());
-    }
-
-    @org.junit.Test(expected = IllegalArgumentException.class)
-    public void testToString_Invalid() {
-        path.addPoint(new Point(1, 1));
-        path.toString();
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -18,8 +18,5 @@ public class EPointStateTest {
         assertEquals(EPointState.PATH, EPointState.getPointState('_'));
         assertEquals(EPointState.WALL, EPointState.getPointState('X'));
         assertNull(EPointState.getPointState('A'));
-        assertNull(EPointState.getPointState('B'));
-        assertNull(EPointState.getPointState('1'));
-        assertNull(EPointState.getPointState('/'));
     }
 }
