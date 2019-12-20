@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputRead {
+    private InputRead() {
+    }
 
     /**
      * Reads a text file with a maze definition and creates a {@link Maze} object.
